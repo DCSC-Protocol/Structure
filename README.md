@@ -15,13 +15,7 @@
 
   __[1] - Who receiver?__ _true_ - Пакет предназначен серверу (Пиру), _false_ - Пакет предназначен клиенту или P2P стороне
 
-  __[2] - Use shifts?__ _true_ - Пакет использует сдвиги заголовков, предназначается для обхода DPI, в таком случае структура пакета становится такой:
-  ```
-  [ Default Packet Params - 1 bytes ] [ Shift len - 1 bytes ] [ Packet Type - 1 bytes ] [ Shift - ~ bytes] [ Signded Hash Len (uint16) - 2 bytes ] [ Shift - ~ bytes] [ Signded Hash - ~ bytes ] [ Shift - ~ bytes] [ Timestamp (uint64) - 8 bytes ] [ Shift - ~ bytes] [ Payload ]
-  ```
-  __Shift len__ - указывает количество пропущенных байт между полями (Максимум 256), пустые участки '__Shift__' можно забить любым мусором.
-
-  Если же _false_ - Пакет использует стандартный формат.
+  __[2] - Use shifts?__ _true_ - Пакет использует сдвиги заголовков, предназначается для обхода DPI, с.м _#root-with-shifts_, _false_ - Пакет использует стандартный формат.
   
 - __Pakcet Type__
 
@@ -42,3 +36,19 @@
 - __Timestamp__
 
   Обычная юниксовская UTC таймштампа, нужна по сути только от replay атак.
+
+
+## Root with shifts
+
+Пакет использует сдвиги заголовков, предназначается для обхода DPI, в таком случае структура пакета становится такой:
+```
+[ Default Packet Params - 1 bytes ] [ Shift len - 1 bytes ] [ Packet Type - 1 bytes ] [ Shift - ~ bytes] [ Signded Hash Len (uint16) - 2 bytes ] [ Shift - ~ bytes] [ Signded Hash - ~ bytes ] [ Shift - ~ bytes] [ Timestamp (uint64) - 8 bytes ] [ Shift - ~ bytes] [ Payload ]
+```
+
+- __Shift len__
+  указывает количество пропущенных байт между полями (Максимум 256)
+
+- __Shift__
+  Пустые участки, можно забить любым мусором.
+
+Сдвиги распространяются только на Root область пакета, но не внутри Payload.
