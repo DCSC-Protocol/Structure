@@ -15,7 +15,7 @@
 
   __[1] - Who receiver?__ _true_ - Пакет предназначен серверу (Пиру), _false_ - Пакет предназначен клиенту или P2P стороне
 
-  __[2] - Use shifts?__ _true_ - Пакет использует сдвиги заголовков, предназначается для обхода DPI, с.м _#root-with-shifts_, _false_ - Пакет использует стандартный формат.
+  __[2] - Use shifts?__ _true_ - Пакет использует сдвиги заголовков, предназначается для обхода DPI, с.м __[Root with shifts](https://github.com/DCSC-Protocol/Structure/blob/main/README.md#root-with-shifts)__, _false_ - Пакет использует стандартный формат.
   
 - __Pakcet Type__
 
